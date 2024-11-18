@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbmsvwktmnrbp"]
+
+[ext_resource type="Script" path="res://Cenas/player.gd" id="1_sub4o"]
+[ext_resource type="Texture2D" uid="uid://bekk0firbncku" path="res://Assets/PGirl_run_(32 x 32).png" id="1_t5chl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap377"]
+atlas = ExtResource("1_t5chl")
+region = Rect2(7, 8, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqobc"]
+atlas = ExtResource("1_t5chl")
+region = Rect2(31, 8, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8wrg"]
+atlas = ExtResource("1_t5chl")
+region = Rect2(55, 8, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv50t"]
+atlas = ExtResource("1_t5chl")
+region = Rect2(82, 8, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oefa1"]
+atlas = ExtResource("1_t5chl")
+region = Rect2(108, 8, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01pmb"]
+atlas = ExtResource("1_t5chl")
+region = Rect2(133, 8, 19, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_usyne"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap377")
+}],
+"loop": true,
+"name": &"girl_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqobc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8wrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv50t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oefa1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01pmb")
+}],
+"loop": true,
+"name": &"girl_run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7amf"]
+size = Vector2(52.75, 79.2813)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_sub4o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_usyne")
+animation = &"girl_idle"
+frame_progress = 0.748053
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_p7amf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="LeftRayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 3)
+target_position = Vector2(-7.8, 0)
+
+[node name="RightRayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(0, 3)
+target_position = Vector2(7.8, 0)
